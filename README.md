@@ -1,11 +1,11 @@
-# 🦁 Safari Booking System
+# Safari Booking System
 
 A modern, full-stack Safari Booking Platform designed to simplify the discovery, booking, and payment of travel experiences across Kenya and beyond.  
 The system allows users to explore destinations, book safari tickets, receive instant confirmations, and pay securely using multiple payment methods including M-Pesa, cards, and mobile money.
 
 ---
 
-## 🌍 Overview
+## Overview
 
 The Safari Booking System is a digital tourism platform that connects travelers with wildlife parks, tour destinations, and travel experiences.
 
@@ -19,21 +19,21 @@ Users can:
 
 ---
 
-## ✨ Key Features
+##  Key Features
 
-### 🔎 Destination Search & Discovery
+### Destination Search & Discovery
 - Intelligent search system for safari parks and travel destinations
 - Wikipedia API integration for real-time destination information
 - Filter by location, popularity, pricing, and category
 
-### 🧭 Travel Recommendations
+### Travel Recommendations
 - AI-powered suggestions for travel destinations
 - Personalized recommendations based on user behavior
 - “Trending places” and “Top safari experiences” sections
 
 ---
 
-### 🎟️ Ticket Booking System
+### Ticket Booking System
 - Real-time ticket availability checking
 - Easy booking flow:
   1. Select destination
@@ -45,19 +45,19 @@ Users can:
 
 ---
 
-### 💳 Payment Integration
+###  Payment Integration
 Supports multiple secure payment methods:
 
 - 🇰🇪 M-Pesa STK Push integration
-- 💳 Credit/Debit card payments
-- 💰 Mobile money integrations
-- 🌍 Secure online payment gateway
+-  Credit/Debit card payments
+-  Mobile money integrations
+- Secure online payment gateway
 
 All transactions are securely verified before ticket issuance.
 
 ---
 
-### 📩 Notifications System
+###  Notifications System
 - Email confirmations with ticket details
 - SMS booking confirmation via API integration
 - Payment success/failure alerts
@@ -65,7 +65,7 @@ All transactions are securely verified before ticket issuance.
 
 ---
 
-### 🤖 AI Travel Assistant
+###  AI Travel Assistant
 Powered by OpenAI API:
 
 - Answers travel-related questions
@@ -80,7 +80,7 @@ Example prompts:
 
 ---
 
-### 📄 Digital Ticketing System
+###  Digital Ticketing System
 - Auto-generated digital tickets after booking
 - Downloadable PDF tickets
 - QR-code based validation system (optional extension)
@@ -88,4 +88,4 @@ Example prompts:
 
 ---
 
-## 🏗️ System Architecture
+##  System Architecture
