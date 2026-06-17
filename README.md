@@ -89,3 +89,81 @@ Example prompts:
 ---
 
 ##  System Architecture
+
+
+---
+
+## 🛠️ Tech Stack
+
+### Backend
+- Python
+- Flask (REST API)
+- SQLAlchemy ORM
+- Flask-JWT-Extended (Authentication)
+
+### Frontend
+- HTML5 / CSS3 / JavaScript
+- Bootstrap / Tailwind (optional)
+- AJAX / Fetch API
+
+### Database
+- SQLite (development)
+- PostgreSQL (production-ready)
+
+### Integrations
+- M-Pesa Daraja API
+- OpenAI API (Chatbot)
+- Wikipedia API
+- SMTP Email Service
+- SMS Gateway API
+
+---
+
+## Authentication & Security
+- JWT-based authentication system
+- Password hashing using bcrypt
+- Secure API endpoints
+- Environment variables for sensitive keys
+
+---
+
+## How Booking Works
+
+1. User logs into the platform
+2. Searches for a destination or safari park
+3. Views details (powered by Wikipedia API)
+4. Selects date and ticket package
+5. Proceeds to checkout
+6. Chooses payment method:
+   - M-Pesa
+   - Card
+   - Mobile money
+7. Payment is verified via backend callback
+8. Ticket is generated and sent via:
+   - Email
+   - SMS
+   - Download link
+
+---
+
+##  Installation
+
+```bash
+# Clone repository
+git clone https://github.com/yourusername/safari-booking-system.git
+
+# Navigate to project folder
+cd safari-booking-system
+
+# Create virtual environment
+python -m venv venv
+
+# Activate environment
+source venv/bin/activate  # Mac/Linux
+venv\Scripts\activate     # Windows
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run server
+flask run
