@@ -146,6 +146,22 @@ Example prompts:
 
 ---
 
+SECRET_KEY=your_secret_key
+DATABASE_URL=your_database_url
+
+OPENAI_API_KEY=your_openai_key
+
+MPESA_CONSUMER_KEY=your_key
+MPESA_CONSUMER_SECRET=your_secret
+MPESA_SHORTCODE=your_shortcode
+MPESA_PASSKEY=your_passkey
+
+EMAIL_HOST=smtp.gmail.com
+EMAIL_USER=your_email
+EMAIL_PASSWORD=your_password
+
+SMS_API_KEY=your_sms_key
+
 ##  Installation
 
 ```bash
@@ -167,3 +183,5 @@ pip install -r requirements.txt
 
 # Run server
 flask run
+
+
