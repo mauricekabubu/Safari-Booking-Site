@@ -1,1 +1,187 @@
-# Safari-Booking-Site
+# Safari Booking System
+
+A modern, full-stack Safari Booking Platform designed to simplify the discovery, booking, and payment of travel experiences across Kenya and beyond.  
+The system allows users to explore destinations, book safari tickets, receive instant confirmations, and pay securely using multiple payment methods including M-Pesa, cards, and mobile money.
+
+---
+
+## Overview
+
+The Safari Booking System is a digital tourism platform that connects travelers with wildlife parks, tour destinations, and travel experiences.
+
+Users can:
+- Search for travel destinations and safari parks
+- Explore destinations using integrated Wikipedia-powered information
+- Book safari tickets in real time
+- Make secure online payments
+- Receive tickets via email and SMS instantly
+- Interact with an AI travel assistant for recommendations
+
+---
+
+##  Key Features
+
+### Destination Search & Discovery
+- Intelligent search system for safari parks and travel destinations
+- Wikipedia API integration for real-time destination information
+- Filter by location, popularity, pricing, and category
+
+### Travel Recommendations
+- AI-powered suggestions for travel destinations
+- Personalized recommendations based on user behavior
+- “Trending places” and “Top safari experiences” sections
+
+---
+
+### Ticket Booking System
+- Real-time ticket availability checking
+- Easy booking flow:
+  1. Select destination
+  2. Choose date and package
+  3. Enter traveler details
+  4. Confirm booking
+  5. Proceed to payment
+- Instant ticket generation after payment confirmation
+
+---
+
+###  Payment Integration
+Supports multiple secure payment methods:
+
+- 🇰🇪 M-Pesa STK Push integration
+-  Credit/Debit card payments
+-  Mobile money integrations
+- Secure online payment gateway
+
+All transactions are securely verified before ticket issuance.
+
+---
+
+###  Notifications System
+- Email confirmations with ticket details
+- SMS booking confirmation via API integration
+- Payment success/failure alerts
+- Booking reminders
+
+---
+
+###  AI Travel Assistant
+Powered by OpenAI API:
+
+- Answers travel-related questions
+- Suggests safari destinations based on user interests
+- Provides itinerary recommendations
+- Helps users plan trips efficiently
+
+Example prompts:
+- “Best safari in Kenya for 3 days?”
+- “Cheapest national parks near Nairobi”
+- “When is the best time to visit Maasai Mara?”
+
+---
+
+###  Digital Ticketing System
+- Auto-generated digital tickets after booking
+- Downloadable PDF tickets
+- QR-code based validation system (optional extension)
+- Email delivery of tickets
+
+---
+
+##  System Architecture
+
+
+---
+
+## 🛠️ Tech Stack
+
+### Backend
+- Python
+- Flask (REST API)
+- SQLAlchemy ORM
+- Flask-JWT-Extended (Authentication)
+
+### Frontend
+- HTML5 / CSS3 / JavaScript
+- Bootstrap / Tailwind (optional)
+- AJAX / Fetch API
+
+### Database
+- SQLite (development)
+- PostgreSQL (production-ready)
+
+### Integrations
+- M-Pesa Daraja API
+- OpenAI API (Chatbot)
+- Wikipedia API
+- SMTP Email Service
+- SMS Gateway API
+
+---
+
+## Authentication & Security
+- JWT-based authentication system
+- Password hashing using bcrypt
+- Secure API endpoints
+- Environment variables for sensitive keys
+
+---
+
+## How Booking Works
+
+1. User logs into the platform
+2. Searches for a destination or safari park
+3. Views details (powered by Wikipedia API)
+4. Selects date and ticket package
+5. Proceeds to checkout
+6. Chooses payment method:
+   - M-Pesa
+   - Card
+   - Mobile money
+7. Payment is verified via backend callback
+8. Ticket is generated and sent via:
+   - Email
+   - SMS
+   - Download link
+
+---
+
+SECRET_KEY=your_secret_key
+DATABASE_URL=your_database_url
+
+OPENAI_API_KEY=your_openai_key
+
+MPESA_CONSUMER_KEY=your_key
+MPESA_CONSUMER_SECRET=your_secret
+MPESA_SHORTCODE=your_shortcode
+MPESA_PASSKEY=your_passkey
+
+EMAIL_HOST=smtp.gmail.com
+EMAIL_USER=your_email
+EMAIL_PASSWORD=your_password
+
+SMS_API_KEY=your_sms_key
+
+##  Installation
+
+```bash
+# Clone repository
+git clone https://github.com/yourusername/safari-booking-system.git
+
+# Navigate to project folder
+cd safari-booking-system
+
+# Create virtual environment
+python -m venv venv
+
+# Activate environment
+source venv/bin/activate  # Mac/Linux
+venv\Scripts\activate     # Windows
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run server
+flask run
+
+
