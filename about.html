@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+
+{% block title %}
+about page
+{% endblock %}
+
+{% block content %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+                <i class="fas fa-compass"></i> AdventureBooker
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('index') }}">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('trips') }}">
+                        <i class="fas fa-map-marked-alt"></i> Trips
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('signup') }}">
+                        <i class="fa-solid fa-user"></i> Customer
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('about') }}">
+                        <i class="fa-solid fa-person"></i> About us
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('FAQ') }}">
+                       <i class="fa-solid fa-circle-question"></i> FAQ
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('gallery') }}">
+                       <i class="fa-solid fa-image"></i> Gallery
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('contact') }}">
+                        <i class="fa-solid fa-phone"></i> Contact
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('login') }}">
+                        <i class="fas fa-user-shield"></i> Admin
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link ai-glow" href="{{ url_for('ai') }}">
+                        <i class="fa-solid fa-robot"></i> AI
+                    </a>
+                </li>
+            </ul>
+            </div>
+        </div>
+    </nav>
+    <br><br>
+    
+    <!-- About Us Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Text Content -->
+                <div class="col-md-7">
+                    <h2 class="fw-bold text-primary">🌍 About Us</h2>
+                    <p class="lead">
+                    Welcome to your gateway to unforgettable adventures. Our booking platform makes exploring simple, secure, and inspiring—whether you’re chasing mountain peaks, discovering hidden waterfalls, or planning a weekend escape.
+                    </p>
+                    <p>
+                    We combine <strong>easy navigation</strong>, <strong>transparent pricing</strong>, and <strong>trusted support</strong> so you can book with confidence. Every trip is carefully curated to spark wonder and create lasting memories.
+                    </p>
+                    <a href="{{url_for('trips')}}" class="btn btn-success btn-lg mt-3">
+                    Book Your Adventure Now →
+                    </a>
+                </div>
+                <!-- Optional Image -->
+                <div class="col-md-5 text-center">
+                    <img src="{{url_for('static', filename='trip.webp')}}" 
+                        class="img-fluid rounded shadow" 
+                        alt="Adventure illustration">
+                </div>
+            </div>
+        </div>
+    </section>
+    <br><br>
+    <div class="container my-5">
+        <div class="row">
+            <!-- Service Box -->
+            <div class="col-md-4">
+                <div class="card shadow-sm h-100 text-center">
+                    <div class="card-body">
+                        <i class="fas fa-hiking fa-3x text-primary mb-3"></i>
+                        <h4 class="card-title">Adventure Trips</h4>
+                        <p class="card-text">
+                            Explore breathtaking destinations like Mt. Longonot, Lake Nakuru, and Thomson’s Falls with guided tours tailored for thrill-seekers.
+                        </p>
+                        <a href="{{ url_for('about') }}" class="btn btn-outline-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Another Service Box -->
+            <div class="col-md-4">
+                <div class="card shadow-sm h-100 text-center">
+                    <div class="card-body">
+                        <i class="fas fa-users fa-3x text-success mb-3"></i>
+                        <h4 class="card-title">Group Packages</h4>
+                        <p class="card-text">
+                            Special discounts and tailored itineraries for families, schools, and corporate teams looking for unforgettable experiences.
+                        </p>
+                        <a href="{{ url_for('trips') }}" class="btn btn-outline-success">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Another Service Box -->
+            <div class="col-md-4">
+                <div class="card shadow-sm h-100 text-center">
+                    <div class="card-body">
+                        <i class="fas fa-shield-alt fa-3x text-danger mb-3"></i>
+                        <h4 class="card-title">Secure Bookings</h4>
+                        <p class="card-text">
+                            Enjoy peace of mind with safe payment options including Mpesa, Airtel Money, and Credit Card.
+                        </p>
+                        <a href="{{ url_for('contact') }}" class="btn btn-outline-danger">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
