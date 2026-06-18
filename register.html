@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}
+register page
+{% endblock %}
+
+{% block content %}
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="card shadow p-4" style="width: 400px;">
+            <h3 class="text-center mb-4">Register</h3>
+            
+            <!-- Register Form -->
+            <form action="{{url_for('register')}}" method="post">
+                <!-- Username -->
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" required>
+                </div>
+                
+                <!-- Email -->
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
+                </div>
+                
+                <!-- Phone -->
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone Number</label>
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter phone number" required>
+                </div>
+
+                <!-- Admin_secret_key -->
+                 <div class="mb-3">
+                    <label for="secret_key" class="form-label">Admin secret key</label>
+                    <input type="secret_key" class="form-control" id="secret_key" name="secret_key" placeholder="Enter admin secret key" required>
+                </div>
+                
+                <!-- Password -->
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
+                </div>
+                
+                <!-- Confirm Password -->
+                <div class="mb-3">
+                    <label for="password2" class="form-label">Confirm Password</label>
+                    <input type="password2" class="form-control" id="password2" name="password2" placeholder="Confirm password" required>
+                </div>
+                
+                <!-- Register Button -->
+                <div class="d-grid mb-3">
+                    <button type="submit" class="btn btn-success">Register</button>
+                </div>
+                
+                <!-- Links -->
+                <div class="text-center">
+                    <a href="/login" class="me-3">Already have an account? Login</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+ <!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+{% endblock %}
