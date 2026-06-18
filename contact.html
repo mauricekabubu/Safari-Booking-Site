@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block title %}
+Contact Us
+{% endblock %}
+
+{% block content %}
+
+    <!-- NAVBAR (same as homepage) -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+                <i class="fas fa-compass"></i> AdventureBooker
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('index') }}">
+                            <i class="fas fa-home"></i> Home
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('trips') }}">
+                            <i class="fas fa-map-marked-alt"></i> Trips
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('signup') }}">
+                            <i class="fa-solid fa-user"></i> Customer
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('about') }}">
+                            <i class="fa-solid fa-person"></i> About us
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('FAQ') }}">
+                        <i class="fa-solid fa-circle-question"></i> FAQ
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('gallery') }}">
+                            <i class="fa-solid fa-image"></i> Gallery
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('contact') }}">
+                            <i class="fa-solid fa-phone"></i> Contact
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('login') }}">
+                            <i class="fas fa-user-shield"></i> Admin
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link ai-glow" href="{{ url_for('ai') }}">
+                            <i class="fa-solid fa-robot"></i> AI
+                        </a>
+                    </li>                                       
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO HEADER WITH BACKGROUND IMAGE -->
+    <header class="hero-header text-white text-center py-5 position-relative">
+
+        <!-- Dark overlay -->
+        <div class="hero-overlay"></div>
+
+        <!-- Hero content -->
+        <div class="container position-relative">
+            <h1 class="display-4 fw-bold">Contact Us</h1>
+            <p class="lead mt-3">
+                Have questions, need help, or want to plan a custom adventure?
+                Our team is here to guide you every step of the way.
+            </p>
+        </div>
+
+    </header>
+
+    <!-- CONTACT FORM SECTION -->
+    <div class="container mt-5 mb-5">
+        <div class="row">
+
+            <!-- Contact Form -->
+            <div class="col-md-6">
+                <h3 class="mb-4">Send Us a Message</h3>
+
+                <form action="{{ url_for('contact') }}" method="post">
+
+                    <div class="mb-3">
+                        <label class="form-label">Name</label>
+                        <input type="text" class="form-control" name="customer_name" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" name="customer_email" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Phone</label>
+                        <input type="tel" class="form-control" name="customer_phone" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Message</label>
+                        <textarea class="form-control" name="customer_message" rows="5" required></textarea>
+                    </div>
+
+                    <button class="btn btn-primary btn-lg">Submit</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
