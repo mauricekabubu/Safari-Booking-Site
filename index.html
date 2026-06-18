@@ -1,0 +1,470 @@
+{% extends "base.html" %}
+
+{% block title %}
+home page
+{% endblock %}
+
+{% block content %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+                <i class="fas fa-compass"></i> AdventureBooker
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('index') }}">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('trips') }}">
+                        <i class="fas fa-map-marked-alt"></i> Trips
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('signup') }}">
+                        <i class="fa-solid fa-user"></i> Customer
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('about') }}">
+                        <i class="fa-solid fa-person"></i> About us
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('FAQ') }}">
+                       <i class="fa-solid fa-circle-question"></i> FAQ
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('gallery') }}">
+                       <i class="fa-solid fa-image"></i> Gallery
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('contact') }}">
+                        <i class="fa-solid fa-phone"></i> Contact
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('login') }}">
+                        <i class="fas fa-user-shield"></i> Admin
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link ai-glow" href="{{ url_for('ai') }}">
+                        <i class="fa-solid fa-robot"></i> AI
+                    </a>
+                </li>
+            </ul>
+            <form class="d-flex align-items-center search-form" id="searchForm" action="{{url_for('searching')}}" method="post">
+                <input class="form-control search-input me-2" type="search"
+                    placeholder="Search..."
+                    aria-label="Search"
+                    id="searchInput"
+                    name="title"
+                    required>
+                <button class="btn search-btn" type="submit">Search</button>
+            </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Searched modal -->
+    {% for result in results %}
+    <div class="modal fade search-result-modal"
+        id="searchModal{{ result.id }}"
+        tabindex="-1"
+        aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Search Result</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                    <p>You searched for: <a href="{{url_for('trips')}}"><strong>{{ result.title }}</strong></a></p>
+                    <br>
+                    <h4 class="text-primary">
+                        {{ result.description }} <br><br> — KES {{ result.price }}
+                    </h4>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    {% if results is defined and results|length == 0 %}
+    <div class="modal fade" id="noResultsModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">No Results Found</h5>
+                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                    <p>Sorry 😕 nothing matched your search.</p>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const modal = new bootstrap.Modal(document.getElementById("noResultsModal"));
+        modal.show();
+    });
+    </script>
+    {% endif %}
+
+
+
+    <header id="hero" class="bg-dark text-white text-center py-5 position-relative">
+        <!-- Overlay -->
+        <div style="background-color: rgba(0,0,0,0.6); position: absolute; top:0; left:0; width:100%; height:100%;">
+
+        </div>
+        
+        <!-- Content -->
+        <div class="container position-relative">
+            <h1 class="display-4 fw-bold">AdventureBooker</h1>
+            <p class="lead mt-3">
+            Welcome to <strong>AdventureBooker</strong>, your gateway to unforgettable journeys across Kenya’s most breathtaking destinations. 
+            From the pink‑hued flamingos of Lake Nakuru to the thrilling hike up Mt. Longonot and the thundering beauty of Thomson’s Falls, 
+            we bring you closer to nature’s wonders. Escape the ordinary — your next adventure starts here.
+            </p>
+            <br>
+        <!-- Search Bar -->
+        <form method="POST" action="{{ url_for('search_wiki') }}">
+            <div class="mt-4 d-flex justify-content-center">
+                <div class="input-group input-group-lg" style="max-width: 600px;">
+                <input type="text"
+                        class="form-control"
+                        placeholder="Search trips, destinations..."
+                        name="topic"
+                        required>
+                <button class="btn btn-primary" type="submit">
+                    Search
+                </button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Result Modal -->
+        <div class="modal fade" id="resultModal" tabindex="-1">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Wikipedia Result</h5>
+                        <button class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        {% if summary_result and page_url %}
+                        <p>{{ summary_result }}</p>
+                        <p><a href="{{ page_url }}" target="_blank">{{ page_url }}</a></p>
+
+                        {% elif e %}
+                        <p class="text-danger">{{ e }}</p>
+
+                        {% else %}
+                        <p>Enter a search topic above</p>
+                        {% endif %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <br><br>
+            <a href="{{ url_for('trips') }}" class="btn btn-primary btn-lg mt-3">Explore Trips</a>
+        </div>
+    </header>
+
+    <br><br><br>
+    <main>
+        <div class="container20">
+            <div class="box0">                
+                <p>“Mount Kenya: Nature’s Crown Jewel”
+                    “Climb Higher, Discover More”
+                    Discover Africa’s second-highest peak, with glaciers, alpine lakes, and breathtaking trails waiting for you.
+                </p>                 
+            </div>
+            <div class="box1">                
+                <p>“Lake Nakuru: Where Flamingos Paint the Horizon”
+                    Experience vibrant birdlife, rare rhinos, and unforgettable safari moments in Kenya’s Great Rift Valley.
+                </p>
+            </div>
+            <div class="box2">                
+                <p>“Nairobi National Park: Safari at the City’s Edge”
+                    Experience lions, rhinos, and giraffes just minutes from downtown Nairobi.
+                </p>
+            </div>
+        </div>
+    </main>
+    <br><br><br>    
+    <!-- About Us Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Text Content -->
+                <div class="col-md-7">
+                    <h2 class="fw-bold text-primary">🌍 About Us</h2>
+                    <p class="lead">
+                    Welcome to your gateway to unforgettable adventures. Our booking platform makes exploring simple, secure, and inspiring—whether you’re chasing mountain peaks, discovering hidden waterfalls, or planning a weekend escape.
+                    </p>
+                    <p>
+                    We combine <strong>easy navigation</strong>, <strong>transparent pricing</strong>, and <strong>trusted support</strong> so you can book with confidence. Every trip is carefully curated to spark wonder and create lasting memories.
+                    </p>
+                    <a href="{{url_for('trips')}}" class="btn btn-success btn-lg mt-3">
+                    Book Your Adventure Now →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br>
+    <div class="container my-5">
+        <div class="row">
+            <!-- Service Box -->
+            <div class="col-md-4">
+                <div class="card shadow-sm h-100 text-center">
+                    <div class="card-body">
+                        <i class="fas fa-hiking fa-3x text-primary mb-3"></i>
+                        <h4 class="card-title">Adventure Trips</h4>
+                        <p class="card-text">
+                            Explore breathtaking destinations like Mt. Longonot, Lake Nakuru, and Thomson’s Falls with guided tours tailored for thrill-seekers.
+                        </p>
+                        <a href="{{ url_for('about') }}" class="btn btn-outline-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Another Service Box -->
+            <div class="col-md-4">
+                <div class="card shadow-sm h-100 text-center">
+                    <div class="card-body">
+                        <i class="fas fa-users fa-3x text-success mb-3"></i>
+                        <h4 class="card-title">Group Packages</h4>
+                        <p class="card-text">
+                            Special discounts and tailored itineraries for families, schools, and corporate teams looking for unforgettable experiences.
+                        </p>
+                        <a href="{{ url_for('trips') }}" class="btn btn-outline-success">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Another Service Box -->
+            <div class="col-md-4">
+                <div class="card shadow-sm h-100 text-center">
+                    <div class="card-body">
+                        <i class="fas fa-shield-alt fa-3x text-danger mb-3"></i>
+                        <h4 class="card-title">Secure Bookings</h4>
+                        <p class="card-text">
+                            Enjoy peace of mind with safe payment options including Mpesa, Airtel Money, and Credit Card.
+                        </p>
+                        <a href="{{ url_for('contact') }}" class="btn btn-outline-danger">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+<div class="container my-5">
+        <h2 class="text-center mb-4">Frequently Asked Questions</h2>
+
+        <div class="row g-4">
+
+            <!-- FAQ Item -->
+            <div class="col-md-6">
+                <div class="faq-box">
+                    <details>
+                        <summary>How do I book an adventure?</summary>
+                        <p>
+                            Visit the Trips page, choose your destination, and click “Book Now.” 
+                            You’ll receive instant confirmation.
+                        </p>
+                    </details>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="faq-box">
+                    <details>
+                        <summary>Can I cancel or reschedule?</summary>
+                        <p>
+                            Yes, cancellations are allowed up to 48 hours before departure. 
+                            Rescheduling is also available.
+                        </p>
+                    </details>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="faq-box">
+                    <details>
+                    <summary>Do you offer group discounts?</summary>
+                    <p>
+                        Groups of 5+ enjoy special discounted rates. Contact us for custom packages.
+                    </p>
+                    </details>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="faq-box">
+                    <details>
+                    <summary>What should I bring for a trip?</summary>
+                        <p>
+                            Comfortable clothing, water, sturdy shoes, and any items listed on the trip page.
+                        </p>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <div class="container100">
+        <div class="box1"></div>
+        <div class="box2"></div>
+        <div class="box3"></div>
+    </div>
+    <br><br>
+    <!-- Video Section -->
+    <div class="container300">
+        <div class="align-items-center text-center mb-4">
+            <div class="ratio ratio-16x9" style="max-width:700px; margin:auto;">
+                <video class="w-100 rounded" controls>
+                    <source src="{{ url_for('static', filename='Hailuo_Video_Realistic action scene of a ma_453091434373652482.mp4') }}" type="video/mp4">
+                </video>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    
+    <!-- Testimonials Section -->
+    <div class="container350">
+        <div class="box">
+            <h2 class="text-center mb-4">What Our Customers Say</h2>
+            <div class="testimonial">
+                <img src="{{url_for('static',filename='beauty.webp')}}" alt="">
+                <p>"AdventureBooker made my trip to Mt. Longonot unforgettable! The booking process was seamless, and the guides were fantastic."</p>
+                <h5>- Sarah K.</h5>
+            </div>
+            <div class="testimonial">
+                <img src="{{url_for('static',filename='mausculine.webp')}}" alt="">
+                <p>"I booked a family trip to Lake Nakuru through AdventureBooker, and it was amazing! The kids loved seeing the flamingos up close."</p>
+                <h5>- James M.</h5>
+            </div>
+            <!--<div class="testimonial">
+                <img src="{{url_for('static',filename='1766313961140.jpg')}}" alt="">
+                <p>"The customer service at AdventureBooker is top-notch. They helped me customize my safari experience, and it was perfect!"</p>
+                <h5>- Aisha T.</h5>
+            </div>-->
+        </div>
+    </div>
+    <br><br>
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-4 pb-2">
+        <div class="container">
+            <div class="row">
+                <!-- About -->
+                <div class="col-md-4">
+                    <h5>About Us</h5>
+                    <p>
+                    We provide the best travel experiences like never before.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                    <li><a href="#" class="text-white text-decoration-none">Home</a></li>
+                    <li><a href="#" class="text-white text-decoration-none">Services</a></li>
+                    <li><a href="#" class="text-white text-decoration-none">Contact</a></li>
+                    <li><a href="#" class="text-white text-decoration-none">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div class="col-md-4">
+                    <h5>Contact</h5>
+                    <p><i class="bi bi-geo-alt"></i> Nairobi, Kenya</p>
+                    <p><i class="bi bi-envelope"></i> info@example.com</p>
+                    <p><i class="bi bi-telephone"></i> +254 700 123 456</p>
+                </div>
+            </div>
+
+            <hr class="border-light">
+
+            <!-- Copyright -->
+            <div class="text-center">
+                <p class="mb-0">&copy; 2025 Your Company. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+{% if summary_result or e %}
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const resultModal = new bootstrap.Modal(
+                document.getElementById('resultModal')
+            );
+            resultModal.show();
+        });        
+    </script>
+{% endif %}
+<script>
+    const hero = document.getElementById("hero");
+
+        const images = [
+            "{{ url_for('static', filename='snow.webp') }}",
+            "{{ url_for('static', filename='adventure.webp') }}",
+            "{{ url_for('static', filename='adv.webp') }}"
+        ];
+
+        let index = 0;
+
+        function changeBackground() {
+            hero.style.backgroundImage = `url('${images[index]}')`;
+            index = (index + 1) % images.length;
+        }
+
+        // start slideshow
+        changeBackground();
+        setInterval(changeBackground, 4000);
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const modals = document.querySelectorAll(".search-result-modal");
+
+        if (modals.length > 0) {
+            const firstModal = new bootstrap.Modal(modals[0]);
+            firstModal.show();
+        }
+    });
+</script>
+
+
+
+{% endblock %}
