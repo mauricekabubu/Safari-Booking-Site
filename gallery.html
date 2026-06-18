@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+
+{% block title %}
+Gallery
+{% endblock %}
+
+{% block content %}
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+                <i class="fas fa-compass"></i> AdventureBooker
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('index') }}">
+                                <i class="fas fa-home"></i> Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('trips') }}">
+                                <i class="fas fa-map-marked-alt"></i> Trips
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('signup') }}">
+                                <i class="fa-solid fa-user"></i> Customer
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('about') }}">
+                                <i class="fa-solid fa-person"></i> About us
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('FAQ') }}">
+                                <i class="fa-solid fa-circle-question"></i> FAQ
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('gallery') }}">
+                                <i class="fa-solid fa-image"></i> Gallery
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('contact') }}">
+                                <i class="fa-solid fa-phone"></i> Contact
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('login') }}">
+                                <i class="fas fa-user-shield"></i> Admin
+                            </a>
+                        </li>
+                            <a class="nav-link ai-glow" href="{{ url_for('ai') }}">
+                                <i class="fa-solid fa-robot"></i> AI
+                            </a>
+                        </li>    
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>    
+
+    <!-- GALLERY GRID -->
+    <div class="container py-5 gallery">
+
+        <div class="row g-4">
+
+            <!-- Image 1 -->
+             {% for image in images %}
+            <div class="col-md-4">
+                <a href="{{ url_for('static', filename='uploads/'+image.image) }}" data-lightbox="adventure" data-title="{{ image.title }}">
+                    <img src="{{ url_for('static', filename='uploads/'+image.image) }}" class="img-fluid rounded shadow gallery-img">
+                </a>
+            </div>
+            {% endfor %}
+            <!--
+            # Image 2 
+            <div class="col-md-4">
+                <a href="{{ url_for('static', filename='Nakuru.jpg') }}" data-lightbox="adventure" data-title="Lake Nakuru Flamingos">
+                    <img src="{{ url_for('static', filename='Nakuru.jpg') }}" class="img-fluid rounded shadow gallery-img">
+                </a>
+            </div> 
+
+            -- Image 3 
+            <div class="col-md-4">
+                <a href="{{ url_for('static', filename='Mt.Longot.jpg') }}" data-lightbox="adventure" data-title="Mt. Longonot Hike">
+                    <img src="{{ url_for('static', filename='Mt.Longot.jpg') }}" class="img-fluid rounded shadow gallery-img">
+                </a>
+            </div>
+
+            -- Add more images the same way 
+            !-- Image 3 
+            <div class="col-md-4">
+                <a href="{{ url_for('static', filename='Mamba.jpg') }}" data-lightbox="adventure" data-title="Mt. Longonot Hike">
+                    <img src="{{ url_for('static', filename='Mamba.jpg') }}" class="img-fluid rounded shadow gallery-img">
+                </a>
+            </div>
+
+            -- Image 3 
+            <div class="col-md-4">
+                <a href="{{ url_for('static', filename='Snow.webp') }}" data-lightbox="adventure" data-title="Mt. Longonot Hike">
+                    <img src="{{ url_for('static', filename='Snow.webp') }}" class="img-fluid rounded shadow gallery-img">
+                </a>
+            </div>
+
+            -- Image 3 
+            <div class="col-md-4">
+                <a href="{{ url_for('static', filename='Kianjai.jpg') }}" data-lightbox="adventure" data-title="Mt. Longonot Hike">
+                    <img src="{{ url_for('static', filename='Kianjai.jpg') }}" class="img-fluid rounded shadow gallery-img">
+                </a>
+            </div>
+
+            <-- Image 3 
+            <div class="col-md-4">
+                <a href="{{ url_for('static', filename='Aberdare.jpg') }}" data-lightbox="adventure" data-title="Mt. Longonot Hike">
+                    <img src="{{ url_for('static', filename='Aberdare.jpg') }}" class="img-fluid rounded shadow gallery-img">
+                </a>
+            </div>
+
+            <-- Image 3 
+            <div class="col-md-4">
+                <a href="{{ url_for('static', filename='adventure.jpg') }}" data-lightbox="adventure" data-title="Mt. Longonot Hike">
+                    <img src="{{ url_for('static', filename='adventure.jpg') }}" class="img-fluid rounded shadow gallery-img">
+                </a>
+            </div>
+
+            <-- Image 3 
+            <div class="col-md-4">
+                <a href="{{ url_for('static', filename='adventure.webp') }}" data-lightbox="adventure" data-title="Mt. Longonot Hike">
+                    <img src="{{ url_for('static', filename='adventure.webp') }}" class="img-fluid rounded shadow gallery-img">
+                </a>
+            </div>
+
+            <-- Image 3 
+            <div class="col-md-4">
+                <a href="{{ url_for('static', filename='tours.jpg') }}" data-lightbox="adventure" data-title="Mt. Longonot Hike">
+                    <img src="{{ url_for('static', filename='tours.jpg') }}" class="img-fluid rounded shadow gallery-img">
+                </a>
+            </div>
+
+            <-- Image 3 
+            <div class="col-md-4">
+                <a href="{{ url_for('static', filename='travel.webp') }}" data-lightbox="adventure" data-title="Mt. Longonot Hike">
+                    <img src="{{ url_for('static', filename='travel.webp') }}" class="img-fluid rounded shadow gallery-img">
+                </a>
+            </div>
+
+            <-- Image 3 
+            <div class="col-md-4">
+                <a href="{{ url_for('static', filename='trip.webp') }}" data-lightbox="adventure" data-title="Mt. Longonot Hike">
+                    <img src="{{ url_for('static', filename='trip.webp') }}" class="img-fluid rounded shadow gallery-img">
+                </a>
+            </div>
+        </div>
+    </div>-->
+
+
+{% endblock %}
