@@ -1,0 +1,38 @@
+{% extends "client_base.html" %}
+
+{% block title %}
+Client Tickets
+{% endblock %}
+
+{% block content %}
+    <div id="ticketsContainer">
+        {% for ticket in tickets %}
+        <div class="ticket-card">
+            <div class="ticket-header">
+                <h4>🎟 Adventure Ticket</h4>
+                <small>Booking Confirmation</small>
+            </div>
+
+            <div class="ticket-body">
+                <p><strong>Name:</strong> {{ticket.customer_name}}</p>
+                <p><strong>Email:</strong> {{ticket.customer_email}}</p>
+                <p><strong>Phone:</strong> {{ticket.customer_phone}}</p>
+                <p><strong>Ticket Code:</strong> {{ticket.ticket_code}}</p>
+                <p><strong>Payment:</strong> {{ticket.payment_options}}</p>
+                <p><strong>Amount Paid:</strong> KES {{ticket.customer_price}}</p>
+                <small>Issued on {{ticket.date_created.strftime('%d %b %Y, %I:%M %p')}}</small>
+            </div>
+
+            <div class="ticket-footer">
+                Please present this ticket at entry<br>
+                <strong>AdventureBooker</strong>
+            </div>
+            <a href="{{url_for('ticket')}}" download="ticket_{{ticket.ticket_code}}.pdf">{{ticket.ticket_code}}</a>
+        </div>
+        {% endfor %}
+    </div>
+
+<button onclick="window.print()" class="btn no-print">Print Tickets</button>
+
+
+{% endblock %}
