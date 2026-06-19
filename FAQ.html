@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block title %}
+FAQ page
+{% endblock %}
+
+{% block content %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+                <i class="fas fa-compass"></i> AdventureBooker
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('index') }}">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('trips') }}">
+                        <i class="fas fa-map-marked-alt"></i> Trips
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('signup') }}">
+                        <i class="fa-solid fa-user"></i> Customer
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('about') }}">
+                        <i class="fa-solid fa-person"></i> About us
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('FAQ') }}">
+                    <i class="fa-solid fa-circle-question"></i> FAQ
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('gallery') }}">
+                    <i class="fa-solid fa-image"></i> Gallery
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('contact') }}">
+                        <i class="fa-solid fa-phone"></i> Contact
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('login') }}">
+                        <i class="fas fa-user-shield"></i> Admin
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link ai-glow" href="{{ url_for('ai') }}">
+                        <i class="fa-solid fa-robot"></i> AI
+                    </a>
+                </li>
+            </ul>
+            </div>
+        </div>
+    </nav>
+    <br><br>
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Frequently Asked Questions</h2>
+
+        <div class="row g-4">
+
+            <!-- FAQ Item -->
+            <div class="col-md-6">
+                <div class="faq-box">
+                    <details>
+                        <summary>How do I book an adventure?</summary>
+                        <p>
+                            Visit the Trips page, choose your destination, and click “Book Now.” 
+                            You’ll receive instant confirmation.
+                        </p>
+                    </details>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="faq-box">
+                    <details>
+                        <summary>Can I cancel or reschedule?</summary>
+                        <p>
+                            Yes, cancellations are allowed up to 48 hours before departure. 
+                            Rescheduling is also available.
+                        </p>
+                    </details>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="faq-box">
+                    <details>
+                    <summary>Do you offer group discounts?</summary>
+                    <p>
+                        Groups of 5+ enjoy special discounted rates. Contact us for custom packages.
+                    </p>
+                    </details>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="faq-box">
+                    <details>
+                    <summary>What should I bring for a trip?</summary>
+                        <p>
+                            Comfortable clothing, water, sturdy shoes, and any items listed on the trip page.
+                        </p>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
