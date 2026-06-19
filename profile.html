@@ -1,0 +1,50 @@
+{% extends "admin_base.html" %}
+
+{% block title %}
+admin profile
+{% endblock %}
+
+{% block content %}
+    <div class="container py-5">
+        <div class="row justify-content-center g-4">
+
+            <!-- Profile Picture Box -->
+            <div class="col-md-4">                
+                    <div class="form-group">
+                        <div class="card-body">
+                            {% if user.profile_pic %}
+                                <img id="profileImage" src="{{ url_for('static', filename=user.profile_pic) }}"
+                                    class="rounded-circle mb-3" alt="Profile Picture"
+                                    class="img-fluid rounded-circle mb-3"
+                        style="width: 150px; height: 150px; object-fit: cover;">
+                            {% else %}
+                                <img id="profileImage" src="{{ url_for('static', filename='default.jpg') }}"
+                                    class="rounded-circle mb-3" alt="Default Profile Picture" class="img-fluid rounded-circle mb-3"
+                        style="width: 150px; height: 150px; object-fit: cover;">
+                            {% endif %}
+
+                            <form action="{{url_for('upload_pic')}}" method="post" enctype="multipart/form-data">
+                                <h5 class="card-title">Upload Profile Picture</h5>
+                                <input type="file" class="form-control" id="uploadPic" name="uploadPic" accept="image/*" required>
+                                <button type="submit" class="btn btn-primary btn-sm mt-2">Upload</button>
+                            </form>
+                        </div>
+                    </div>              
+            </div>
+
+            <!-- Admin Details Box -->
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                    <h4 class="card-title mb-3">Admin Details</h4>
+                    <p><strong>Name:</strong>{{user.username}}</p>
+                    <p><strong>Email:</strong>{{user.email}}</p>
+                    <p><strong>phone:</strong>{{user.phone}}</p>
+                    <p><strong>Id:</strong>{{user.id}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
