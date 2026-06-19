@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+
+{% block title %}
+Trips page
+{% endblock %}
+
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+                <i class="fas fa-compass"></i> AdventureBooker
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('index') }}">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('trips') }}">
+                        <i class="fas fa-map-marked-alt"></i> Trips
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('signup') }}">
+                        <i class="fa-solid fa-user"></i> Customer
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('about') }}">
+                       <i class="fa-solid fa-person"></i> About us
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('FAQ') }}">
+                       <i class="fa-solid fa-circle-question"></i> FAQ
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('gallery') }}">
+                       <i class="fa-solid fa-image"></i> Gallery
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('contact') }}">
+                        <i class="fa-solid fa-phone"></i> Contact
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('login') }}">
+                        <i class="fas fa-user-shield"></i> Admin
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link ai-glow" href="{{ url_for('ai') }}">
+                        <i class="fa-solid fa-robot"></i> AI
+                    </a>
+                </li>
+            </ul>
+            </div>
+        </div>
+    </nav>
+        <div class="container30">
+            <div class="box">
+                <br><br><br>
+                <h1>Ultimate adventures and Exculsive experiences</h1>
+                <p>
+                    ✨ “Escape the ordinary and discover unforgettable moments! Secure your ticket today and turn your dream trip into reality.” ✨
+                </p>
+                <br>
+                <h2>Grab Your Tickets now don't be left out!</h2>
+            </div>
+        </div>
+        <br><br>
+    <main>
+        <div class="container40">
+            {% for item in items %}
+            <div class="box">
+                <img src="{{ url_for('static', filename='uploads/' + item.image_url) }}" alt="{{ item.title }}">
+                <div class="details">
+                    <h1>{{ item.title }}</h1>
+                    <p class="des">{{ item.description }}</p>
+                    <p class="price">Price: kes {{ item.price }}</p>
+                    <p class="deadline">Deadline: {{ item.date }}</p>
+                    <button class="book-btn btn btn-primary" data-bs-toggle="modal" data-bs-target="#bookingModal{{ item.id }}">
+                        Book Now
+                    </button>
+                </div>
+            </div>
+
+            <!-- Booking Modal for this trip -->
+            <div class="modal fade" id="bookingModal{{ item.id }}" tabindex="-1" aria-labelledby="bookingModalLabel{{ item.id }}" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Header -->
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="bookingModalLabel{{ item.id }}">Book {{ item.title }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <!-- Body -->
+                    <div class="modal-body">
+                        <form id="bookingForm{{ item.id }}" action="{{url_for('book',id=item.id)}}" method="POST">
+                            <div class="mb-3">
+                                <label for="clientName{{ item.id }}" class="form-label">Full Name</label>
+                                <input type="text" class="form-control" name="customer_name" id="clientName{{ item.id }}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="clientEmail{{ item.id }}" class="form-label">Email</label>
+                                <input type="email" class="form-control" name="customer_email" id="clientEmail{{ item.id }}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="clientPhone{{ item.id }}" class="form-label">Phone</label>
+                                <input type="tel" class="form-control" name="customer_phone" id="clientPhone{{ item.id }}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="amount{{ item.id }}" class="form-label">Amount</label>
+                                <input type="number" class="form-control" name="customer_price" id="amount{{ item.id }}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Date</label>
+                                <input type="date" name="trip_date" value="{{ item.trip_date }}" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                            <label class="form-label">Payment Option</label>
+                                <select class="form-select" name="payment_options" id="buyingOption{{ item.id }}" required>
+                                    <option value="">Select...</option>
+                                    <option value="mpesa">Mpesa</option>
+                                    <option value="card">Credit Card</option>
+                                    <option value="airtel">Airtel Money</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" form="bookingForm{{ item.id }}" class="btn btn-success">Confirm Booking</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+
+
+    </main>
+{% endblock %}
