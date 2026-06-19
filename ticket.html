@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+ticket page
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% for ticket in tickets %}
+        <div class="ticket-left">
+            <h1>AdventureBooker ticket</h1>
+            <p><strong>Name:</strong> {{ ticket.name }}</p>
+            <p><strong>Email:</strong> {{ ticket.email }}</p>
+            <p><strong>Phone:</strong> {{ ticket.phone }}</p>
+            <p><strong>Date:</strong> {{ ticket.date }}</p>
+            <p><strong>price:</strong> {{ ticket.price }}</p>
+            <p><strong>Payment Method:</strong> {{ ticket.payment_method }}</p>
+        </div>
+        <div class="ticket-right">
+            <p class="label"><strong>Ticket No:</strong>{{ ticket.id }}</p>
+            <h3></h3>
+            <div class="barcode"></div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
