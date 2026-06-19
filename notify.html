@@ -1,0 +1,122 @@
+{% extends "admin_base.html" %}
+
+{% block title %}
+Notifications profile
+{% endblock %}
+
+
+{% block content %}
+    <div class="container mt-4">
+        <h2>Customer Messages</h2>
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Message</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for note in notes %}
+                <tr>
+                    <td>{{ note.customer_name }}</td>
+                    <td>{{ note.customer_email }}</td>
+                    <td>{{ note.customer_phone }}</td>
+                    <td>{{ note.customer_message }}</td>
+                    <td>{{ note.date_sent }}</td>
+                    <td>                        
+                        <!-- Send Button -->
+                        <button class="btn btn-success btn-sm"
+                                data-bs-toggle="modal"
+                                data-bs-target="#sendModal{{ note.id }}">
+                                Send
+                        </button>
+                        <!-- Delete Button -->
+                        <button class="btn btn-danger btn-sm"
+                                data-bs-toggle="modal"
+                                data-bs-target="#deleteModal{{ note.id }}">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+
+                <!-- Send Modal -->
+                <div class="modal fade" id="sendModal{{ note.id }}" tabindex="-1" aria-labelledby="sendModalLabel{{ note.id }}" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form method="POST" action="{{ url_for('send_mail') }}">
+
+                                <!-- Hidden customer email -->
+                                <input type="hidden" name="customer_email" value="{{ note.customer_email }}">
+
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Send Reply</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+
+                                <div class="modal-body">
+
+                                    <!-- Username -->
+                                    <div class="mb-3">
+                                        <label class="form-label">From</label>
+                                        <input type="text" class="form-control" name="username" value="{{ note.username }}" required>
+                                    </div>
+
+                                    <!-- To (readonly) -->
+                                    <div class="mb-3">
+                                        <label class="form-label">To</label>
+                                        <input type="text" class="form-control" value="{{ note.customer_email }}" readonly>
+                                    </div>
+
+                                    <!-- Subject -->
+                                    <div class="mb-3">
+                                        <label class="form-label">Subject</label>
+                                        <input type="text" class="form-control" name="subject" value="{{ note.subject }}" required>
+                                    </div>
+
+                                    <!-- Message -->
+                                    <div class="mb-3">
+                                        <label class="form-label">Message</label>
+                                        <textarea class="form-control" name="message" rows="4" required></textarea>
+                                    </div>
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-success">Send</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Delete Modal -->
+                <div class="modal fade" id="deleteModal{{ note.id }}" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form method="POST" action="{{ url_for('delete_note', id=note.id) }}">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Confirm Delete</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Are you sure you want to delete this message?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
