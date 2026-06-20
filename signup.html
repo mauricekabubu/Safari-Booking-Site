@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}
+signup page
+{% endblock %}
+
+{% block content %}
+    <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+        <div class="card shadow p-4" style="max-width: 400px; width: 100%;">
+            <h3 class="text-center mb-4">Login</h3>
+
+            <form action="{{ url_for('signup') }}" method="POST">
+
+                <!-- Username -->
+                <div class="mb-3">
+                    <label class="form-label">Username</label>
+                    <input type="text" name="username" class="form-control" placeholder="Enter username" required>
+                </div>
+
+                <!-- Password -->
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="password" name="password" class="form-control" placeholder="Enter password" required>
+                </div>
+
+                <!-- Forgot Password -->
+                <div class="mb-3 text-end">
+                    <a href="#"
+                    class="text-decoration-none"
+                    data-bs-toggle="modal"
+                    data-bs-target="#forgotModal">
+                    Forgot Password?
+                    </a>
+                </div>
+
+
+
+                <!-- Login Button -->
+                <button type="submit" class="btn btn-primary w-100 mb-3">Login</button>
+
+                <!-- Register Link -->
+                <div class="text-center">
+                    <p class="mb-0">
+                        Don't have an account?
+                        <a href="{{ url_for('register_client') }}" class="text-decoration-none">Register</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal fade" id="forgotModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <form action="{{ url_for('forgot_pass') }}" method="POST">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Forgot Password</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <label class="form-label">Email</label>
+                        <input type="email" name="email" class="form-control" required>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
