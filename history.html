@@ -1,0 +1,26 @@
+{% extends "admin_base.html" %}
+
+{% block title %}
+History - Admin Panel
+{% endblock %}
+
+{% block content %}
+    <h1 style="color:red">HISTORY PAGE LOADED</h1>
+    <br><br>
+    {% for trip in trips%}
+    <div class="card text-center">
+        <div class="card-header">
+            Featured
+        </div>
+        <div class="card-body">
+            <h4 class="card-title"> {{ trip.title }} </h4>
+            <p class="card-text"> {{ trip.description }} </p>
+            <h5 class="card-title"> {{ trip.price }} </h5>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+        <div class="card-footer text-muted">
+            {{ trip.date }}
+        </div>
+    </div>
+    {% endfor %}
+{% endblock %}
