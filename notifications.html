@@ -1,0 +1,35 @@
+{% extends "client_base.html" %}
+
+{% block title %}
+<title>Notifications</title>
+{% endblock %}
+
+{% block content %}
+    <div class="notifications-container">        
+    {% for b in bookings %}
+        <div class="notification-card {{id=b.id}}">
+        
+            <div class="icon">
+                {% if b.type == 'booking' %}
+                ✔
+                {% elif b.type == 'payment' %}
+                    💲
+                {% else %}
+                    🔔
+                {% endif %}
+            </div>
+
+            <div class="content">
+                <h5>{{b.customer_price}}</h5>
+                <p>{{b.payment_options}}</p>
+                <p>{{b.trip_date}}</p>
+                <span class="time">{{b.created_at.strftime('%d %b %Y, %H:%M')}}</span>
+            </div>
+
+        </div>
+    {% else %}
+        <p class="empty">No notifications yet</p>
+    {% endfor %}
+    </div>
+
+{% endblock %}
