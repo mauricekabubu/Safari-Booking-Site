@@ -1,0 +1,85 @@
+{% extends "admin_base.html" %}
+
+{% block title %}
+dashboard page
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h2 color="blue" font="bold" text-align="center">Hello there {{current_user.username}}</h2>
+        <div class="container my-5">
+            <div class="row">
+                <!-- Bookings Box -->
+                <div class="col-md-4">
+                    <div class="card text-center shadow-sm">
+                        <div class="card-body">
+                        <i class="fas fa-calendar-check fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">Bookings</h5>
+                        <h2 class="fw-bold">{{booking_count}}</h2>
+                        <p class="text-muted">Total confirmed bookings</p>
+                        </div>
+                    </div>
+                </div>
+                <br><br><br>
+                <br><br><br>
+
+                <!-- Notifications Box -->
+                <div class="col-md-4">
+                    <div class="card text-center shadow-sm">
+                        <div class="card-body">
+                        <i class="fas fa-bell fa-3x text-warning mb-3"></i>
+                        <h5 class="card-title">Notifications</h5>
+                        <h2 class="fw-bold">{{ notification_count }}</h2>
+                        <p class="text-muted">Customer messages & alerts</p>
+                        </div>
+                    </div>
+                </div>
+                <br><br><br>
+                <br><br><br>
+
+                <!-- Payments Box -->
+                <div class="col-md-4">
+                    <div class="card text-center shadow-sm">
+                        <div class="card-body">
+                            <i class="fas fa-credit-card fa-3x text-success mb-3"></i>
+                            <h5 class="card-title">Payments</h5>
+                            <h2 class="fw-bold">{{ payments_count }}</h2>
+                            <p class="text-muted">Successful transactions</p>
+                        </div>
+                    </div>
+                </div>
+                <br><br><br>
+                <br><br><br>
+                
+                <!-- Number of Users -->
+                <div class="col-md-4">
+                    <div class="card text-center shadow-sm border-0">
+                        <div class="card-body py-4">
+                            <i class="fas fa-users fa-3x text-primary mb-3"></i>
+                            <h5 class="card-title mb-1">Users</h5>
+                            <h2 class="fw-bold">{{ users_count }}</h2>
+                            <p class="text-muted mb-0">Registered customers</p>
+                        </div>
+                    </div>
+                </div>
+                <br><br><br>
+                <br><br><br>
+
+                <!-- History -->
+                <div class="col-md-4">
+                    <div class="card text-center shadow-sm border-0">
+                        <div class="card-body py-4">
+                            <i class="fas fa-clock-rotate-left fa-3x text-warning mb-3"></i>
+                            <h5 class="card-title mb-1">History</h5>
+                            <h2 class="fw-bold">{{ history_count }}</h2>
+                            <p class="text-muted mb-0">Completed trips</p>
+                        </div>
+                    </div>
+                </div>
+                <br><br><br>
+                <br><br><br>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}
