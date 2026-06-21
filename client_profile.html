@@ -1,0 +1,49 @@
+{% extends "client_base.html" %}
+
+{% block title %}
+Client Profile
+{% endblock %}
+
+{% block content %}
+<br><br>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="card shadow p-4" style="width: 400px;">
+            <h3 class="text-center mb-4">Client Profile</h3>
+            {% if user %}
+            <div class="text-center mb-4">
+                <img src="{{ url_for('static', filename='default.jpg') }}" alt="Profile Picture" class="rounded-circle" width="120" height="120">
+            </div>
+            
+            <div class="mb-3">
+                <h5>Full Names:</h5>
+                <p>{{user.full_names}}</p>
+            </div>
+
+            <div class="mb-3">
+                <h5>Username:</h5>
+                <p>{{user.username}}</p>
+            </div>
+            
+            <div class="mb-3">
+                <h5>Email:</h5>
+                <p>{{user.email}}</p>
+            </div>
+
+            <div class="mb-3">
+                <h5>Phone:</h5>
+                <p>{{user.phone}}</p>
+            </div>
+            
+            
+            <div class="mb-3">
+                <h5>Member ID:</h5>
+                <p>{{user.id}}</p>
+            </div>
+            
+            <div class="d-grid">
+                <a href="{{ url_for('edit_profile') }}" class="btn btn-primary">Edit Profile</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
