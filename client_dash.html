@@ -1,0 +1,46 @@
+{% extends "client_base.html" %}
+
+{% block title %}
+dashboard page
+{% endblock %}
+
+{% block content %}
+    <h2 class="mb-4">Quick Stats</h2>
+<h2 text-center>Hello there {{current_user.username}}</h2>
+
+    <div class="row g-4">
+
+        <div class="col-md-4">
+            <div class="card text-center shadow-sm">
+                <div class="card-body">
+                    <i class="fas fa-users fa-3x text-primary mb-3"></i>
+                    <h5>Tickets</h5>
+                    <h2 class="fw-bold">{{tickets}}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card text-center shadow-sm">
+                <div class="card-body">
+                    <i class="fas fa-calendar-check fa-3x text-success mb-3"></i>
+                    <h5>Bookings</h5>
+                    <h2 class="fw-bold">{{bookings}}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card text-center shadow-sm">
+                <div class="card-body">
+                    <i class="fas fa-credit-card fa-3x text-warning mb-3"></i>
+                    <h5>Payments</h5>
+                    <h2 class="fw-bold"></h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}
